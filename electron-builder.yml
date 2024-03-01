@@ -1,6 +1,7 @@
-appId: com.electron.app
-productName: electron-app
+appId: com.xandemon-electron.app
+productName: Xandemon Electron App
 directories:
+  output: dist
   buildResources: build
 files:
   - '!**/.vscode/*'
@@ -12,12 +13,13 @@ files:
 asarUnpack:
   - resources/**
 win:
-  executableName: electron-app
+  executableName: xandemon-electron
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
   uninstallDisplayName: ${productName}
   createDesktopShortcut: always
+  removeDefaultUninstallWelcomePage: true
 mac:
   entitlementsInherit: build/entitlements.mac.plist
   extendInfo:
@@ -39,5 +41,7 @@ appImage:
   artifactName: ${name}-${version}.${ext}
 npmRebuild: false
 publish:
-  provider: generic
-  url: https://example.com/auto-updates
+  provider: github
+  protocol: https
+  owner: xandemon
+  repo: in-app-electron-auto-update-example
