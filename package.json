@@ -16,16 +16,19 @@
     "dev": "electron-vite dev",
     "build": "npm run typecheck && electron-vite build",
     "postinstall": "electron-builder install-app-deps",
+    "clean:build": "rimraf dist out",
     "build:unpack": "npm run build && electron-builder --dir",
     "build:win": "npm run build && electron-builder --win",
     "build:mac": "electron-vite build && electron-builder --mac",
-    "build:linux": "electron-vite build && electron-builder --linux"
+    "build:linux": "electron-vite build && electron-builder --linux",
+    "build:publish": "pnpm clean:build && set GH_TOKEN=<your_github_personal_access_token_here> && pnpm build && electron-builder -p always --win --config"
   },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
     "electron-log": "^5.1.1",
-    "electron-updater": "^6.1.8"
+    "electron-updater": "^6.1.8",
+    "rimraf": "^5.0.5"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "^2.0.0",
